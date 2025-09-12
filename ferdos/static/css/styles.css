@@ -1,0 +1,35 @@
+.footer-class {
+    height: 100px;
+    background-color: darkgreen;
+}
+
+.header-class {
+    height: 100px;
+    background-color: darkgreen;
+}
+
+[dir="rtl"] .card-text,
+[dir="rtl"] .card-title,
+[dir="rtl"] .btn {
+  text-align: right;
+}
+
+[dir="rtl"] .card 
+[dir="rtl"] .card-header 
+[dir="rtl"] .card-body {
+    text-align: center;
+}
+
+.default {
+    all: unset;
+    direction: rtl;
+    text-align: right;
+    display: revert;
+    font: revert;
+    color: revert;
+    margin: revert;
+    padding: revert;
+    border: revert;
+    background: revert;
+    unicode-bidi: embed;
+}

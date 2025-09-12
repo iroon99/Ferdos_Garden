@@ -1,0 +1,22 @@
+{% extends "main_template.html" %}
+
+{% block content %}
+    <h1 class="default">
+        معرفی بخش های موزۀ سینما
+    </h1>
+    {% for place in places %}
+        {% if place.place_part.part_name == 'باغ' %}
+            <div class="card" style="text-align: center; font-size: 20px">
+                <div class="card-header">
+                    {{place.place_title}}
+                </div>
+                <div class="card-body" style="text-align: center;">
+                    <blockquote class="blockquote mb-0">
+                    <img src=/media/{{place.place_picture}} alt={{place.place_title}} width="850" height="565" >
+                    <p>{{place.description}}</p>
+                    </blockquote>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

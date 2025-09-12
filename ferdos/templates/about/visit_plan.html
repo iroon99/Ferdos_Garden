@@ -1,0 +1,56 @@
+{% extends "main_template.html" %}
+
+{% block content %}
+    <h1 class="default">
+        برنامه و قوانین بازدید
+    </h1>
+    {% for place in places %}
+        <div class="card" style="text-align: center; font-size: 25px">
+            <div class="card-header">
+                {{place.place_title}}
+            </div>
+            <div class="card-body" style="text-align: center;">
+                <blockquote class="blockquote mb-0">
+                <img src=/media/{{place.place_picture}} alt={{place.place_title}} width="850" height="565" >
+                <p>{{place.description}}</p>
+                </blockquote>
+                <div class="card-footer text-muted">
+                    <h4>
+                        زمان بازدید
+                    </h4>
+                </div>
+                <div class="card-body" style="text-align: center; font-size: 20px">
+                    {% for visit_day in place.visit_day.all %}
+                        {{ visit_day.day_name }}{% if not forloop.last %} , {% endif %}
+                    {% endfor %}
+                    <br>
+                    <span>از ساعت : {{ place.visit_time|date:"H:i" }}</span>
+                </div>
+                <div class="card-footer text-muted">
+                    <h4>
+                        قوانین بازدید
+                    </h4>
+                </div>
+                <ul class="card-body" style="text-align: center; font-size: 20px">
+                    {% for rule in place.visit_rules.all %}
+                        <li style="list-style-position: inside;">{{ rule.rule_title }}</li>
+                    {% endfor %}
+                </ul>
+                {% if place.ticket_required == True %}
+                    <div class="card-footer text-muted">
+                        <h4>
+                            قیمت بلیت
+                        </h4>
+                    </div>
+                    <ul class="card-body" style="text-align: center; font-size: 20px">
+                        {% for ticket in tickets %}
+                            {% if ticket.place.place_title == place.place_title %}
+                                <li style="list-style-position: inside;">{{ ticket.group.group_title }} : {{ ticket.price }} تومان</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
