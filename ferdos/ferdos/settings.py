@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'ferdos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'ferdos11',
+        'NAME': 'ferdos05',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': '127.0.0.1',

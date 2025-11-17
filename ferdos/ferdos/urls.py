@@ -24,5 +24,6 @@ urlpatterns = [
     path('', index),
     path('admin/', admin.site.urls),
     path('contact-us/', contactUs),
-    path('about-ferdos-garden/', include('apps.about.urls'))
+    path('about-ferdos-garden/', include('apps.about.urls')),
+    path('blogs/', include('apps.blog.urls'))
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
