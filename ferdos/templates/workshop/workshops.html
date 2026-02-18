@@ -1,0 +1,76 @@
+{% extends 'main_template.html' %}
+
+{% block content %}
+    <h1 class="default">
+        کارگاه ها
+    </h1>
+    {% for workshop in workshops %}
+        <div class="card" style="text-align: center; font-size: 20px">
+            <div class="card-header">
+                {{workshop.workshop_title}}
+            </div>
+            <div class="card-body" style="text-align: center;">
+                <blockquote class="blockquote mb-0">
+                <img src=/media/{{workshop.main_picture}} alt={{workshop.workshop_title}} width="850" height="565" >
+                <h3 class="default1">اطلاعات کلی</h3>
+                <p>مکان برگزاری : {{workshop.place}}</p>
+                <p>زمان برگزاری : {{workshop.workshop_date_time}}</p>
+                <p>مدرس : {{workshop.teacher}}</p>
+                <p>وضعیت برگزاری : {{workshop.status}}</p>
+                <h3 class="default1">جزئیات</h3>
+                <p>{{workshop.details}}</p>
+                <h3 class="default1">نحوه ثبت نام</h3>
+                <p>{{workshop.reg_guide}}</p>
+                {% if workshop.status.status_title == 'برگزار شده' %}
+                    <a href="/workshop/report/{{workshop.id}}/" class="btn btn-primary">مشاهده گزارش</a>
+                {% else %}
+                    <a href="#" class="btn btn-primary">مشاهده گزارش</a>
+                {% endif %}
+                </blockquote>
+            </div>
+        </div>
+    {% endfor %}
+    <!-- Bootstrap 5 Pagination -->
+    {% if is_paginated %}
+        <nav aria-label="Posts pagination" class="mt-5">
+        <ul class="pagination justify-content-center">
+
+            <!-- First -->
+            <li class="page-item {% if page_obj.number == 1 %}disabled{% endif %}">
+            <a class="page-link" href="?page=1" aria-label="First">
+                <span aria-hidden="true">&laquo;&laquo;</span>
+            </a>
+            </li>
+
+            <!-- Previous -->
+            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+            <a class="page-link" href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+            </li>
+
+            <!-- Page numbers (simple version – all pages) -->
+            {% for num in paginator.page_range %}
+            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+
+            <!-- Next -->
+            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+            <a class="page-link" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+            </li>
+
+            <!-- Last -->
+            <li class="page-item {% if page_obj.number == paginator.num_pages %}disabled{% endif %}">
+            <a class="page-link" href="?page={{ paginator.num_pages }}" aria-label="Last">
+                <span aria-hidden="true">&raquo;&raquo;</span>
+            </a>
+            </li>
+
+        </ul>
+        </nav>
+    {% endif %}
+{% endblock %}

@@ -33,3 +33,17 @@
     background: revert;
     unicode-bidi: embed;
 }
+
+.default1 {
+    all: unset;
+    direction: rtl;
+    text-align: center;
+    display: revert;
+    font: revert;
+    color: revert;
+    margin: revert;
+    padding: revert;
+    border: revert;
+    background: revert;
+    unicode-bidi: embed;
+}
