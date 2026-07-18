@@ -1,0 +1,38 @@
+{% extends "main_template.html" %}
+
+{% block content %}
+    <h1 class="default">
+        خاطرات بازدید
+    </h1>
+    {% for memory in memories %}
+        <div class="card" style="text-align: center; font-size: 20px">
+            <div class="card-header">
+                {{ memory.memory_title }}
+            </div>
+            <div class="card-body" style="text-align: center;">
+                <blockquote class="blockquote mb-0">
+                    <div style="max-width: 850px; margin: 0 auto;">
+                        {% for image in memory.images.all %}
+                            <img src="/media/{{ image.memory_image }}"
+                                 alt="{{ memory.memory_title }}"
+                                 width="850" height="565"
+                                 class="me-2 mb-2">
+                        {% endfor %}
+                        <p class="mt-3" style="text-align: center; word-wrap: break-word;">
+                            {{ memory.memory_text }}
+                        </p>
+                        {% if memory.id in memory_like %}
+                            <a class="heart-liked" onclick="dislike({{ memory.id }})" id="icon_like{{ memory.id }}">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        {% else %}
+                            <a class="heart-unliked" onclick="like({{ memory.id }})" id="icon_like{{ memory.id }}">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </blockquote>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

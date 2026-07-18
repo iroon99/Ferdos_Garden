@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'apps.blog',
     'apps.about',
     'apps.main',
-    'apps.workshop'
+    'apps.workshop',
+    'apps.accounts',
+    'apps.memories',
+    'crispy_forms',
+    'crispy_bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +86,7 @@ DATABASES = {
         'ENGINE': 'mysql.connector.django',
         'NAME': 'ferdos05',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': 'Root123@',
         'HOST': '127.0.0.1',
         'PORT': '3306'
     }
@@ -136,3 +140,6 @@ MEDIA_ROOT = join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = '/account/login/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'

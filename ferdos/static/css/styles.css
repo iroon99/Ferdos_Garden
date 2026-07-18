@@ -47,3 +47,22 @@
     background: revert;
     unicode-bidi: embed;
 }
+
+label {
+    text-align: right;
+    width: 100%;
+}
+
+.heart-liked {
+    color: #ff0000;      /* Bright red */
+    font-size: 24px;     /* Adjust size as needed */
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.heart-unliked {
+    color: #888888;      /* Medium gray */
+    font-size: 24px;     /* Adjust size as needed */
+    text-decoration: none;
+    transition: transform 0.2s ease, color 0.2s ease;
+}

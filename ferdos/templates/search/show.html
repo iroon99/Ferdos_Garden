@@ -1,0 +1,79 @@
+{% extends "main_template.html" %}
+
+{% block content %}
+    {% for memory in memories %}
+        <div class="card" style="text-align: center; font-size: 20px">
+            <div class="card-header">
+                {{ memory.memory_title }}
+            </div>
+            <div class="card-body" style="text-align: center;">
+                <blockquote class="blockquote mb-0">
+                    <div style="max-width: 850px; margin: 0 auto;">
+                        {% for image in memory.images.all %}
+                            <img src="/media/{{ image.memory_image }}"
+                                 alt="{{ memory.memory_title }}"
+                                 width="850" height="565"
+                                 class="me-2 mb-2">
+                        {% endfor %}
+                        <p class="mt-3" style="text-align: center; word-wrap: break-word;">
+                            {{ memory.memory_text }}
+                        </p>
+                        {% if memory.id in memory_like %}
+                            <a class="heart-liked" onclick="dislike({{ memory.id }})" id="icon_like{{ memory.id }}">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        {% else %}
+                            <a class="heart-unliked" onclick="like({{ memory.id }})" id="icon_like{{ memory.id }}">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </blockquote>
+            </div>
+        </div>
+    {% endfor %}
+    {% for blog in blogs%}
+        <div class="card" style="text-align: center; font-size: 20px">
+            <div class="card-header">
+                {{blog.article_title}}
+            </div>
+            <div class="card-body" style="text-align: center;">
+                <blockquote class="blockquote mb-0">
+                <img src=/media/{{blog.article_main_picture}} alt={{blog.article_title}} width="850" height="565" >
+                <p>{{place.description}}</p>
+                <p>{{blog.article_abstract}}</p>
+                <p>نویسنده : {{blog.author}}</p>
+                <p>دسته بندی : {{blog.group}}</p>
+                <p>{{blog.views}} بازدید</p>
+                <a href="{{blog.id}}/" class="btn btn-primary">مشاهده جزئیات</a>
+                </blockquote>
+            </div>
+        </div>
+    {% endfor %}
+    {% for workshop in workshops %}
+        <div class="card" style="text-align: center; font-size: 20px">
+            <div class="card-header">
+                {{workshop.workshop_title}}
+            </div>
+            <div class="card-body" style="text-align: center;">
+                <blockquote class="blockquote mb-0">
+                <img src=/media/{{workshop.main_picture}} alt={{workshop.workshop_title}} width="850" height="565" >
+                <h3 class="default1">اطلاعات کلی</h3>
+                <p>مکان برگزاری : {{workshop.place}}</p>
+                <p>زمان برگزاری : {{workshop.workshop_date_time}}</p>
+                <p>مدرس : {{workshop.teacher}}</p>
+                <p>وضعیت برگزاری : {{workshop.status}}</p>
+                <h3 class="default1">جزئیات</h3>
+                <p>{{workshop.details}}</p>
+                <h3 class="default1">نحوه ثبت نام</h3>
+                <p>{{workshop.reg_guide}}</p>
+                {% if workshop.status.status_title == 'برگزار شده' %}
+                    <a href="/workshop/report/{{workshop.id}}/" class="btn btn-primary">مشاهده گزارش</a>
+                {% else %}
+                    <a href="#" class="btn btn-primary">مشاهده گزارش</a>
+                {% endif %}
+                </blockquote>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
